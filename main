@@ -1,0 +1,46 @@
+<html>
+<head><title>Search by birth</title></head>
+	<form name="form1" method="post" action="vipul.php">
+	<p><B>ENTER FROM THE STATEMENT GIVEN BELOW :</B></p>
+	<p>1 FOR POPULAR NAMES BY BIRTH YEAR<br>2 FOR POPULARITY OF A NAME THAT HAS CHANGED OVER THE YEAR</p>
+	<input type="text" name="choice"><br>
+	<input type="submit" name="submit1">
+	</form>
+<body>
+<?php
+	$choice=$_POST['choice'];
+	switch ($choice)
+	{
+		case 1:
+			part1();
+			break;
+		case 2:
+			part2();
+			break;
+		default :
+			echo "NOT EXIST";
+			exit;
+	}
+function part1()
+{?>
+	<FORM NAME="form1" METHOD="POST" ACTION="part1.php">
+	<p><B>Enter your choice :<BR>m for MALE<BR>f for FEMALE<BR>b for BOTH<BR><INPUT TYPE="TEXT" VALUE="Enter here" NAME="s"></B></p>
+	<p><B>Enter year you want to search between 1944 and 2013 :<br><input type="text" value="Enter here" name="yy"></B></p>
+	<p><B>Enter the top list you want :<br><input type="text" value="enter here" name="top"></B></p>
+	<INPUT TYPE="submit">
+	</FORM>
+<?php
+}
+function part2()
+{?>
+	<FORM NAME="form1" METHOD="POST" ACTION="part2.php">
+	<p><B>Enter your choice :<BR>m for MALE<BR>f for FEMALE<BR>b for BOTH<BR><INPUT TYPE="TEXT" VALUE="Enter here" NAME="s"></B></p>
+	<p><B>Enter year you want to search between 1944 and 2013 :<br><input type="text" value="Enter here" name="yy"></B></p>
+	<p><B>Enter the name you want to search :<br><input type="text" value="enter here" name="nm"></B></p>
+	<INPUT TYPE="submit">
+	</FORM>
+<?php
+}
+?>
+</body>
+</html>
