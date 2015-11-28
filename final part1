@@ -1,0 +1,122 @@
+<?php
+$s=$_POST['s'];
+switch ($s)
+{
+	case 'm':
+		male();
+		break;
+	case 'f':
+		female();
+		break;
+	case 'b':
+		both();
+		break;
+	default:
+		echo "unable to find choice";
+		exit;
+}?>
+<?php
+function male()
+{
+	$yy=$_POST['yy'];
+ 	$top=$_POST['top'];
+	$counter=0;
+	print "year = ".$yy."<br>";
+	print "top = ".$top."<br>";
+	$st="male_cy$yy"."_top.csv";
+	echo $st."<br>";
+	$d='/xampp/htdocs/mini';
+	$dir=opendir($d);
+	while($file=readdir($dir)) 
+	{
+
+		if($file==$st)
+		{ 
+			$f=fopen("$file","r");
+			while(($line_of_text=fgetcsv($f))!==false)
+			{
+				if($counter<=$top)
+				{
+					echo $line_of_text[0]." , ".$line_of_text[1]." , ".$line_of_text[2]."<br>";
+				}
+				else
+				{
+					break;
+				}
+				$counter++;
+			}
+			fclose($f);
+		}	 
+
+    	}
+    	closedir($dir);
+}
+function female($f)
+{
+	$yy=$_POST['yy'];
+	$top=$_POST['top'];
+	$counter=0;
+	print "year = ".$yy."<br>";
+	print "top = ".$top."<br>";
+	$st="female_cy$yy"."_top.csv";
+	$d='/xampp/htdocs/mini';
+	$dir=opendir($d);
+	while($file=readdir($dir)) 
+	{
+		if($file==$st)
+		{ 
+			$f=fopen("$file","r");
+			while(($line_of_text=fgetcsv($f))!==false)
+			{
+				if($c<=$top)
+				{
+					echo $line_of_text[0]." , ".$line_of_text[1]." , ".$line_of_text[2]."<br>";
+				}
+				else
+				{
+					break;
+				}
+				$c++;
+			}
+			fclose($f);
+		}	 
+
+    	}
+    	closedir($dir);
+}
+function both($b)
+{
+	$yy=$_POST['yy'];
+	$top=$_POST['top'];
+	$counter=0;
+	print "year = ".$yy."<br>";
+	print "top = ".$top."<br>";
+	$st1="male_cy$yy"."_top.csv";
+	$st2="female_cy$yy"."_top.csv";
+	$d='/xampp/htdocs/mini';
+	$dir=opendir($d);
+	while($file=readdir($dir)) 
+	{
+
+		if(($file==$st1)||($file==$st2))
+		{ 
+			$f=fopen("$file","r");
+			while(($line_of_text=fgetcsv($f))!==false)
+			{
+				if($c<=$top)
+				{
+					echo $line_of_text[0]." , ".$line_of_text[1]." , ".$line_of_text[2]."<br>";
+				}
+				else
+				{
+					break;
+				}
+				$c++;
+			}
+			fclose($f);
+		}
+			 
+    	}
+    	closedir($dir);
+}
+?>	
