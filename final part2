@@ -1,0 +1,114 @@
+<?php
+$s=$_POST['s'];
+switch ($s)
+{
+	case 'm':
+		male();
+		break;
+	case 'f':
+		female();
+		break;
+	case 'b':
+		both();
+		break;
+	default:
+		print "\nunable to find choice";
+		exit;
+}
+?>
+<?php
+function male()
+{
+	$yy=$_POST['yy'];
+ 	$nm=$_POST['nm'];
+	$max=2013;
+	echo "CHANGES OCCURS IN THE POSITION OF ".$nm." FROM THE YEAR ".$yy." TO 2013"."<br>"."<br>";
+	$d='/xampp/htdocs/mini';
+	while($yy<=$max)
+	{
+		$dir=opendir($d);
+		while(($file=readdir($dir))!== false)
+		{
+			$st="male_cy$yy"."_top.csv";
+			if($file==$st)
+			{ 
+				$f=fopen("$file","r");
+				while(($line=fgetcsv($f))!=FALSE)
+				{
+					if($line[0]==$nm)
+					{
+						echo "$yy - - - - - $line[2]"."<br>";
+						break;
+					}
+				}
+				fclose($f);
+			}
+		}
+		closedir($dir);
+		$yy=$yy+1;	
+    	}	
+}
+function female()
+{
+	$yy=$_POST['yy'];
+ 	$nm=$_POST['nm'];
+	$max=2013;
+	echo "CHANGES OCCURS IN THE POSITION OF ".$nm." FROM THE YEAR ".$yy." TO 2013"."<br>";
+	$d='/xampp/htdocs/mini';
+	while($yy<=$max)
+	{
+		$dir=opendir($d);
+		while(($file=readdir($dir))!== false)
+		{
+			$st="female_cy$yy"."_top.csv";
+			if($file==$st)
+			{ 
+				$f=fopen("$file","r");
+				while(($line=fgetcsv($f))!=FALSE)
+				{
+					if($line[0]==$nm)
+					{
+						echo "$yy - - - - - $line[2]"."<br>";
+						break;
+					}
+				}
+				fclose($f);
+			}
+		}
+		closedir($dir);
+		$yy=$yy+1;	
+    	}
+}
+function both()
+{
+	$yy=$_POST['yy'];
+ 	$nm=$_POST['nm'];
+	$max=2013;
+	echo "CHANGES OCCURS IN THE POSITION OF ".$nm." FROM THE YEAR ".$yy." TO 2013"."<br>";
+	$d='/xampp/htdocs/mini';
+	while($yy<=$max)
+	{
+		$dir=opendir($d);
+		while(($file=readdir($dir))!== false)
+		{
+			$st1="male_cy$yy"."_top.csv";
+			$st2="female_cy$yy"."_top.csv";
+			if(($file==$st1)||($file==$st2))
+			{ 
+				$f=fopen("$file","r");
+				while(($line=fgetcsv($f))!=FALSE)
+				{
+					if($line[0]==$nm)
+					{
+						echo "$yy - - - - -$line[2]"."<br>";
+						break;
+					}
+				}
+				fclose($f);
+			}
+		}
+		closedir($dir);
+		$yy=$yy+1;	
+    	}
+}
+?>
